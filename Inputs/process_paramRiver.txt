@@ -1,0 +1,36 @@
+#Created on Mon Jul 27 12:47:48 2020
+#
+#@author: PradoDomercq
+#"""
+#input file containing process information for given MPs
+#file containing data to parameterise different rate processes
+#
+#
+#Parameters
+#River compartments: 1-Surface water, 2-Flowing water, 3-Stagnant water, 4-Sediment 
+#aggState: A-free MPs, B-Heteroaggregated MPs-SPM, C-Biofouled MPs-BF, D-Heteroaggregated biofouled MP-BF-SPM
+#alpha: attachment efficiency of the MP to SPM
+#t_half_d: degradation half-life of MP in days
+#k_frag_d: fractionation rate of the Mp in day-1
+#t_biof_growth_d: time for the biofilm coverage to growon the Mp surface in days
+#
+ID,compartment,aggState,alpha,t_half_d,k_frag_d,t_biof_growth_d
+1,1,A,0.01,5000,0.0274,10
+2,1,B,NA,50000,0,10
+3,1,C,0.001,25000,0.0137,10
+4,1,D,NA,100000,0,10
+5,2,A,0.01,5000,0.00274,30
+6,2,B,NA,50000,0,30
+7,2,C,0.001,25000,0.00137,30
+8,2,D,NA,100000,0,30
+9,3,A,0.01,5000,0.00274,300        
+10,3,B,NA,50000,0,300
+11,3,C,0.001,25000,0.00137,300
+12,3,D,NA,100000,0,300
+13,4,A,0,5000,0.00274,0
+14,4,B,NA,50000,0,0
+15,4,C,0,25000,0.00137,0
+16,4,D,NA,100000,0,0
+  
+
+
