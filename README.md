@@ -1,10 +1,7 @@
-# TheFullMulti_RIVER
-River version of the Full Multi framework
-
 # The Full Multi Microplastics River Model
 =======================================
 
-Microplastics River Model from Nano2Plast project
+River version of the Full Multi framework
 
 This repository contains one of the models developed in the ECO48-Nano2plast Project: [EXTENDING NANOPARTICLE MODELS TO OPEN SOURCE MODELS OF THE FATE AND TRANSPORT OF MICROPLASTIC IN AQUATIC SYSTEMS](https://bit.ly/35WxEPF).
 
