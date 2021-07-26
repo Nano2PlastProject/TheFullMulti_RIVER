@@ -1,4 +1,4 @@
-# The Full Multi Microplastics River Model
+# The Full Multi Plastic Particles River Model
 =======================================
 
 River version of the Full Multi framework
@@ -7,9 +7,9 @@ This repository contains one of the models developed in the ECO48-Nano2plast Pro
 
 The Full Multi Team: Proff. Matthew MacLeod (@MacLeodMatt), Dr. Antonia Praetorius (@apraetorius) and Dr. Maria del Prado Domercq (@PradoDomercq)
 
-The code contained in this repository is intended as a framework to study microplastics fate and transport along a generic river system.
+The code contained in this repository is intended as a framework to study fate and transport of plastic particles along a generic river system.
 
-The model can be parameterised for different microplastic types (composition, shape, size, etc.) and river characteristics (flow velocity, suspended particulates, dimensions, etc.). Furthermore, this framework is intended as a flexible tool where new or updated fate processes can be included or reparameterised easily. 
+The model can be parameterised for different plastic particle types (composition, shape, size, etc.) and river characteristics (flow velocity, suspended particulates, dimensions, etc.). Furthermore, this framework is intended as a flexible tool where new or updated fate processes can be included or reparameterised easily. 
 
 This model follows a modular multimedia mass-balance modelling approach in which a system of coupled mass balance equations is built describing the transformation and transport processes of the plastic particles within the modelled system with specific rate constants. All processes are described using first-order kinetics based on our own review of the literature. A database of the modelled processess is included in the documentation folder of this respository.
 
@@ -44,7 +44,7 @@ For a more interactive and modifiable version of this model follow the instructi
   - process_paramRiver: contains relevant MPs fate process descriptors organised by river compartment and MP aggregation state (e.g. biofilm growth rate, fragmentation rate constant, attachment efficiency)
   - compartmentsGenericRiverSec_prop: contains the parameters describing the Generic River dimensions and properties of each of its river sections and compartments (i.e. flow velocity, depth, width, length, etc.). A file to generate new river parameterizations is provided in the same folder called GenerateGenericRiverImputFile.
   
-- Reformulation of process descriptions: the fate process descriptions for microplastics included in this model are formulated in the file called RC_GeneratorRiver. New processes or alternative process descriptions can be added here and should be also added to the list of processes "processList" defined in the MAIN_MPsRiver.py file. Simultaneusly, in order for the model to take on account the new processes, new entries should be added in the estimation of rate constants section (starting line #140 of the MAIN_MpsRiver.py file).
+- Reformulation of process descriptions: the fate process descriptions for plastic particles included in this model are formulated in the file called RC_GeneratorRiver. New processes or alternative process descriptions can be added here and should be also added to the list of processes "processList" defined in the MAIN_MPsRiver.py file. Simultaneusly, in order for the model to take on account the new processes, new entries should be added in the estimation of rate constants section (starting line #140 of the MAIN_MpsRiver.py file).
 
 ### Author
 ===========
