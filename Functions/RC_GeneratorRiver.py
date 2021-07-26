@@ -32,20 +32,20 @@ def degradation(t_half_d):
     return k_deg
 
     
-def fragmentation(k_frag_gen_d, MP_radius_m, MP_volume_m3, MP_diameter_um, sizeBinIdx):   
+def fragmentation(t_frag_d, MP_radius_m, MP_volume_m3, MP_diameter_um, sizeBinIdx):   
     #estimate fragmentation relation between size bins (all except smallest size bin)
     
     #since sizeBins should be always organized froom smallest to largest
     
     if sizeBinIdx == "a":
         #print("Smallest sizeBin, fragments formed will be considered losses")
-        k_frag = k_frag_gen_d*MP_diameter_um/1000/24/60/60
+        k_frag = (1/(t_frag_d*24*60*60))*MP_diameter_um/1000
         
         return (k_frag)
     else:
         volume_fragment = 4/3*math.pi*(MP_radius_m/10)**3 #!!!only works for bins 10 times smaller!!!
         fragments_formed = MP_volume_m3/volume_fragment
-        k_frag = k_frag_gen_d*MP_diameter_um/1000/24/60/60
+        k_frag = (1/(t_frag_d*24*60*60))*MP_diameter_um/1000
         
         return (k_frag, fragments_formed)
   

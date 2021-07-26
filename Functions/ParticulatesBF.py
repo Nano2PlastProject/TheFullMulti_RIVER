@@ -54,7 +54,7 @@ class ParticulatesBF(Particulates):
       #BF_density_kg_m3 = 1388 #from Kooi et al
             
     
-
+  
     def calc_settling(self):
         
         self.vSet_m_s = 2/9*(self.density_kg_m3-density_w_21C_kg_m3)/mu_w_21C_kg_ms*g_m_s2*(self.radius_m)**2
@@ -69,4 +69,6 @@ class ParticulatesBF(Particulates):
         else:
             self.concNum_part_m3 = concNum_part_L*1000
             #if number concentration is given, it is converted from part/L to part/m3
+    
+
     

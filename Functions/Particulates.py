@@ -88,3 +88,12 @@ class Particulates:
             self.concNum_part_m3 = concNum_part_L*1000
             #if number concentration is given, it is converted from part/L to part/m3
     
+    #degradation estimations
+    """ relates only to MP & NPs. Full degradation probably extremely slow
+    possibly not significant for most simulations. But add anyway for scenario
+    analysis or biodegradable polymers. Values currently placeholders
+    ! Add a size relation?!"""
+    
+    
+
+    
