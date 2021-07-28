@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Nano2PlastProject/TheFullMulti_RIVER/HEAD)
+
 This Jupyter Notebook is associated to the Repository Full_Multi_Microplastics_River_Model_Test
 
 Test before making the Full-Multi River Model available of the Full Multi Microplastics River Model open source version.
