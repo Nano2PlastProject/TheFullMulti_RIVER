@@ -29,7 +29,7 @@ The modelled system consists of a generic one directional river structure where 
   - Open the Jupyter notebook FullMulti_RiverModel_Notebook.ipynb and follow the instructions provided in the notebook to parameterise you scenario analysis and run the model.
   - It is recomended to make a copy of the notebook and rename it for each new model run/analysis
  
-- Alternatively you can run the code in the cloud with Binder: you can run the FullMulti_RiverModel case studies Jupyter notebooks directly from your web browser without installing anything. For this click on the launch binder button above. A temporary Jupyter Notebook server with all dependencies will be automatically launched in the cloud. Access the TheFullMulti_River_caseStudies folder and run the selected notebook of your choice. It is not persistent: all your changes will be lost after some time. (#To be implemented#)
+- Alternatively you can run the code in the cloud with Binder: you can run the FullMulti_RiverModel case studies Jupyter notebooks directly from your web browser without installing anything. For this click on the launch binder button above. A temporary Jupyter Notebook server with all dependencies will be automatically launched in the cloud. Access the TheFullMulti_River_caseStudies folder and run the selected notebook of your choice. It is not persistent: all your changes will be lost after some time.
   
 - Spyder:
   - You can launch Spyder from visual Anaconda interface, or by opening `Anaconda prompt`, typing "spyder" and press Enter
