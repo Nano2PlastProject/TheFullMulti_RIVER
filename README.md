@@ -53,12 +53,5 @@ The modelled system consists of a generic one directional river structure where 
 
 Maria del Prado Domercq
 
-prado.domercq@gmail.com
+prado.domercq@aces.su.se
 
-
-### Author
-===========
-
-Maria del Prado Domercq
-
-prado.domercq@gmail.com
