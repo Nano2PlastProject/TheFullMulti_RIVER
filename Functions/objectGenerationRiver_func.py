@@ -2,7 +2,7 @@
 """
 Created on Tue Jul 28 17:50:35 2020
 
-@author: PradoDomercq
+@author: A. Praetorius and PradoDomercq
 """
 import pandas as pd 
 from pathlib import Path
