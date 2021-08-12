@@ -48,10 +48,14 @@ The modelled system consists of a generic one directional river structure where 
   
 - Reformulation of process descriptions: the fate process descriptions for microplastics included in this model are formulated in the file called RC_GeneratorRiver. They are principally formulated for assumed spherical particles but consideration of other shapes are under developement. New processes or alternative process descriptions can be added here and should be also added to the list of processes "processList" defined in the MAIN_MPsRiver.py file. Simultaneusly, in order for the model to take on account the new processes, new entries should be added in the estimation of rate constants section.
 
-### Author
+### Authors
 ===========
 
-Maria del Prado Domercq
+Repository and Jupyter Notebooks: Dr. Maria del Prado Domercq (@PradoDomercq)
 
-prado.domercq@aces.su.se
+Coding of python files and functions: Dr. Antonia Praetorius (@apraetorius) and Dr. Maria del Prado Domercq (@PradoDomercq)
+
+Contact:
+
+fullMultiModel@aces.su.se
 
