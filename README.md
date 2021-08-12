@@ -9,7 +9,7 @@ The Full Multi Team: Proff. Matthew MacLeod (@MacLeodMatt), Dr. Antonia Praetori
 
 The code contained in this repository is intended as a framework to study microplastics fate and transport along a generic river system.
 
-The model can be parameterised for different microplastic types (composition, shape, size, etc.) and river characteristics (flow velocity, suspended particulates, dimensions, etc.). Furthermore, this framework is intended as a flexible tool where new or updated fate processes can be included or reparameterised easily. 
+The model can be parameterised for different microplastic types (composition, size, etc.) and river characteristics (flow velocity, suspended particulates, dimensions, etc.). Furthermore, this framework is intended as a flexible tool where new or updated fate processes can be included or reparameterised easily. 
 
 This model follows a modular multimedia mass-balance modelling approach in which a system of coupled mass balance equations is built describing the transformation and transport processes of the plastic particles within the modelled system with specific rate constants. All processes are described using first-order kinetics based on our own review of the literature.
 
@@ -42,11 +42,11 @@ The modelled system consists of a generic one directional river structure where 
 ## Making changes in the model
 - Reparameterization of imput files can be done by creating new imput files following the same structure as the original files in the imput folder or by adding new entries to the alaready existing imput files:
 
-  - microplasticsSizeClass : contains all characteristics of MP particles to be modelled (i.e. composition, density, size and shape)
+  - microplasticsSizeClass : contains all characteristics of MP particles to be modelled (i.e. composition, density, size and shape) #Shape factors are still placeholders while shape considerations into the processess (e.g. settling) are being implemented.
   - process_paramRiver: contains relevant MPs fate process descriptors organised by river compartment and MP aggregation state (e.g. biofilm growth rate, fragmentation rate constant, attachment efficiency)
   - compartmentsGenericRiverSec_prop: contains the parameters describing the Generic River dimensions and properties of each of its river sections and compartments (i.e. flow velocity, depth, width, length, etc.). A file to generate new river parameterizations is provided in the same folder called GenerateGenericRiverImputFile.
   
-- Reformulation of process descriptions: the fate process descriptions for microplastics included in this model are formulated in the file called RC_GeneratorRiver. New processes or alternative process descriptions can be added here and should be also added to the list of processes "processList" defined in the MAIN_MPsRiver.py file. Simultaneusly, in order for the model to take on account the new processes, new entries should be added in the estimation of rate constants section (starting line #140 of the MAIN_MpsRiver.py file).
+- Reformulation of process descriptions: the fate process descriptions for microplastics included in this model are formulated in the file called RC_GeneratorRiver. They are principally formulated for assumed spherical particles but consideration of other shapes are under developement. New processes or alternative process descriptions can be added here and should be also added to the list of processes "processList" defined in the MAIN_MPsRiver.py file. Simultaneusly, in order for the model to take on account the new processes, new entries should be added in the estimation of rate constants section.
 
 ### Author
 ===========
