@@ -7,7 +7,7 @@ Created on Thu May 14 15:58:47 2020
 
 
 #extension of RS_generator module containing functions to calculate all rate constants 
-#Modification of advection and addition of sed transport for rivers
+#Modification of advection and addition of sed transport for rivers and defouling
 
 import math
 
@@ -293,7 +293,39 @@ def biofilm(compartment, process_df, comp_dict, idx, aggState):
     
     return k_biof
 
-
+def defouling():
+    #Defouling = degradation of Biofilm. for biofouled and heteroaggregated and biofouled particles (B and D)
+    #only takes place in the water compartments ( 1, 2 and 3)
+    
+    if aggState == "B" or "D":
+    
+        if comp_dict[compartment].name == "surface":
+                if process_df.t_biof_degrad_d.loc[idx] == "NAN":
+                    k_defoul = 0
+                else:
+                    k_defoul = 1/process_df.t_biof_degrad_d.loc[idx]/24/60/60
+                
+        if comp_dict[compartment].name == "flowingWater":
+                if process_df.t_biof_degrad_d.loc[idx] == "NAN":
+                    k_defoul = 0
+                else:
+                    k_defoul = 1/process_df.t_biof_degrad_d.loc[idx]/24/60/60
+            
+        if comp_dict[compartment].name == "stagnantWater":
+                if process_df.t_biof_degrad_d.loc[idx] == "NAN":
+                    k_defoul = 0
+                else:
+                    k_defoul = 1/process_df.t_biof_degrad_d.loc[idx]/24/60/60
+            
+        if comp_dict[compartment].name == "sediment":
+                k_defoul = 0
+    else:
+        k_defoul = 0 
+            
+        #assume it takes x days for biofilm coverage to be degraded
+        
+    return k_defoul
+    
 
 #for the sediment compartment rate constants for resuspension and
             #burial in deep sediment are calculated & degradation rate assigned

@@ -59,7 +59,7 @@ MPformslabels = ["Free", "Heteroaggregated", "Biofiolm-covered", "Biofilm-hetero
 sizeBin =["a", "b", "c", "d", "e"]
 sizeBinLabel = ["0.1um", "1um","10um", "100um", "1000um"]# Detection limit for MPs via Fourier Transform Infrared Spectroscopy is 20um
 #MPS RIVER PROCESSES (FATE AND TRANSPORT) LIST
-processList = ["degradation", "fragmentation", "heteroagg", "breakup", "settling","rising", "advection", "mixing", "biofilm", "resusp", "burial","sedTransport"]
+processList = ["degradation", "fragmentation", "heteroagg", "breakup", "settling","rising", "advection", "mixing", "biofilm", "resusp", "burial","sedTransport","defouling"]
 #RIVER SECTIONS
 numberRS=len (compartments_prop)/len(riverComp)
 listRS = [*range(0,int(numberRS),1)]
@@ -161,7 +161,7 @@ T_hm_array_ts=[y.replace(0, 0.0001) for y in T_hm_array_ts]
 figuresHM =[]
 HM_titles=[]
 for y in range(len(T_hm_array_ts)):
-    T_hm_array_ts[y].index = pd.CategoricalIndex(T_hm_array_ts[y].index, categories= ["degradation", "fragmentation","mixing","biofilm", "heteroagg", "breakup", "advection","settling","rising", "resusp", "burial","sedTransport"])
+    T_hm_array_ts[y].index = pd.CategoricalIndex(T_hm_array_ts[y].index, categories= ["degradation", "fragmentation","mixing","biofilm", "heteroagg", "breakup", "advection","settling","rising", "resusp", "burial","sedTransport","defouling"])
     T_hm_array_ts[y].sort_index(level=0, inplace=True)
     figHM = plt.figure(figsize=(10,5))
     log_norm = LogNorm(vmin=T_hm_array_ts[y].min().min(), vmax=T_hm_array_ts[y].max().max())

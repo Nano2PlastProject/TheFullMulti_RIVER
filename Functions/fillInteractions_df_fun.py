@@ -33,7 +33,7 @@ def fillInteractions_fun (RC_df, Clist,compartments_prop):
                         sol = RC_df[sp2]["fragmentation"] 
                 else:
                     sol = 0
-             #only different aggergation states--> heteroagg, biofouling, agg-breackup (aggregation state = sp[-4])    
+             #only different aggergation states--> heteroagg, biofouling,defouling and agg-breackup (aggregation state = sp[-4])    
             elif sp1[:-2]+sp1[-1] == sp2[:-2]+sp2[-1]:
                 if (sp2[-2] =="A" and sp1[-2] =="B") or (sp2[-2] =="C" and sp1[-2] =="D"):
                     sol = RC_df[sp2]["heteroagg"]
@@ -41,6 +41,8 @@ def fillInteractions_fun (RC_df, Clist,compartments_prop):
                     sol = RC_df[sp2]["breakup"]
                 elif (sp2[-2] =="A" and sp1[-2] =="C") or (sp2[-2] =="B" and sp1[-2] =="D"):
                     sol = RC_df[sp2]["biofilm"]
+                elif (sp2[-2] =="C" and sp1[-2] =="A") or (sp2[-2] =="D" and sp1[-2] =="B"):
+                    sol = RC_df[sp2]["defouling"]
                 else:
                     sol=0
             #only different compartments-->settling, rising, mixing, resusp  (compartment sp[-5])     

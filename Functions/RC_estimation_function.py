@@ -64,6 +64,7 @@ def RC_estimation_function(processList,CombList,Clist,MP_prop,compartments_prop,
             RC_df.loc["resusp", spc[2:6]]= RC_GeneratorRiver.resusp(compartment, comp_dict)
             RC_df.loc["burial", spc[2:6]]= RC_GeneratorRiver.burial(compartment, comp_dict)
             RC_df.loc["sedTransport", spc[2:6]]= RC_GeneratorRiver.sedTransport(compartment,comp_dict)
+            RC_df.loc["defouling", spc[2:6]]= RC_GeneratorRiver.defouling(compartment,comp_dict)
             RC_df.loc["volume_m3", spc[2:6]]= particles_dict[aggState].volume_m3
             RC_df.loc["density_kg_m3", spc[2:6]]= particles_dict[aggState].density_kg_m3
     
@@ -119,6 +120,7 @@ def RC_estimation_function(processList,CombList,Clist,MP_prop,compartments_prop,
             RC_df.loc["resusp", spc[2:]]= RC_GeneratorRiver.resusp(compartment, comp_dict)
             RC_df.loc["burial", spc[2:]]= RC_GeneratorRiver.burial(compartment, comp_dict)
             RC_df.loc["sedTransport", spc[2:]]= RC_GeneratorRiver.sedTransport(compartment,comp_dict)
+            RC_df.loc["defouling", spc[2:6]]= RC_GeneratorRiver.defouling(compartment,comp_dict)
             RC_df.loc["volume_m3", spc[2:]]= particles_dict[aggState].volume_m3
             RC_df.loc["density_kg_m3", spc[2:]]= particles_dict[aggState].density_kg_m3
             
@@ -176,6 +178,7 @@ def RC_estimation_function(processList,CombList,Clist,MP_prop,compartments_prop,
             RC_df.loc["resusp", spc[2:]]= RC_GeneratorRiver.resusp(compartment, comp_dict)
             RC_df.loc["burial", spc[2:]]= RC_GeneratorRiver.burial(compartment, comp_dict)
             RC_df.loc["sedTransport", spc[2:]]= RC_GeneratorRiver.sedTransport(compartment,comp_dict)
+            RC_df.loc["defouling", spc[2:6]]= RC_GeneratorRiver.defouling(compartment,comp_dict)
             RC_df.loc["volume_m3", spc[2:]]= particles_dict[aggState].volume_m3
             RC_df.loc["density_kg_m3", spc[2:]]= particles_dict[aggState].density_kg_m3
     else:
