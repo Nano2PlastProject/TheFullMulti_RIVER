@@ -7,7 +7,7 @@ Created on Thu May 14 15:58:47 2020
 
 
 #extension of RS_generator module containing functions to calculate all rate constants 
-#Modification of advection and addition of sed transport for rivers and defouling
+#Modification of advection and addition of sed transport for rivers
 
 import math
 
@@ -212,20 +212,21 @@ def breakup(process_df, idx, MP_radius_m, SPM_radius_m, MP_density_kg_m3, SPM_de
 
 
 def advection(comp_dict, compartment):
-    #advective transport
+     #advective transport
     
     # Based on Praetorius et al. 2012: Kflow = v_riv_flow*(Aw1/Vw1)
     #Being v_riv_flow the river flow velocity in ms-1, Aw1 is the crossectional 
     #area of the flowing water and Vw1 the volume of the box of moving water.
-    
+    #dimensions of the river we estimated resudence time of 26 days in flowing
+    #water and 28 min in the surface watercompartment
     
     #RIVER SECTION DEPENDENT WITH VARYING DISCHARGE 
     
-    if comp_dict[compartment].name == "CoastalWater":
+    if comp_dict[compartment].name == "flowingWater":
         #k_adv = comp_volume_m3/(29*24*60*60) #Kflow = v_riv_flow = 1.5 m3s-1
         #k_adv = comp_volume_m3/(35*60*60) #Kflow = v_riv_flow = 29.8 m3s-1
-        k_adv = discharge/ comp_dict[compartment].volumeBox_m3 #Kflow = v_riv_flow = 65.8 m3s-1
-        #k_adv = comp_dict[compartment].v_riv_flow*(comp_dict[compartment].CrossArea_m2/comp_dict[compartment].volume_m3)
+        #k_adv = discharge/ comp_dict[compartment].volumeBox_m3 #Kflow = v_riv_flow = 65.8 m3s-1
+        k_adv = comp_dict[compartment].v_riv_flow*(comp_dict[compartment].CrossArea_m2/comp_dict[compartment].volume_m3)
     elif comp_dict[compartment].name == "surface":
         #k_adv = comp_volume_m3/(28*60)#Kflow = v_riv_flow = 1.5 m3s-1
         #k_adv = comp_volume_m3/(1.4*60)#Kflow = v_riv_flow = 29.8 m3s-1
@@ -293,39 +294,26 @@ def biofilm(compartment, process_df, comp_dict, idx, aggState):
     
     return k_biof
 
-def defouling():
+def defouling(compartment, process_df, comp_dict, idx, aggState):
     #Defouling = degradation of Biofilm. for biofouled and heteroaggregated and biofouled particles (B and D)
     #only takes place in the water compartments ( 1, 2 and 3)
     
     if aggState == "B" or "D":
-    
-        if comp_dict[compartment].name == "surface":
-                if process_df.t_biof_degrad_d.loc[idx] == "NAN":
-                    k_defoul = 0
-                else:
-                    k_defoul = 1/process_df.t_biof_degrad_d.loc[idx]/24/60/60
-                
-        if comp_dict[compartment].name == "flowingWater":
-                if process_df.t_biof_degrad_d.loc[idx] == "NAN":
-                    k_defoul = 0
-                else:
-                    k_defoul = 1/process_df.t_biof_degrad_d.loc[idx]/24/60/60
-            
-        if comp_dict[compartment].name == "stagnantWater":
-                if process_df.t_biof_degrad_d.loc[idx] == "NAN":
-                    k_defoul = 0
-                else:
-                    k_defoul = 1/process_df.t_biof_degrad_d.loc[idx]/24/60/60
-            
         if comp_dict[compartment].name == "sediment":
+            k_defoul = 0
+    
+        else:
+            if type(process_df.t_biof_degrad_d.loc[idx]) == str:
                 k_defoul = 0
+            else:
+                k_defoul = 1/process_df.t_biof_degrad_d.loc[idx]/24/60/60
+
     else:
         k_defoul = 0 
             
         #assume it takes x days for biofilm coverage to be degraded
         
     return k_defoul
-    
 
 #for the sediment compartment rate constants for resuspension and
             #burial in deep sediment are calculated & degradation rate assigned
