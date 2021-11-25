@@ -7,8 +7,9 @@ Created on Fri Jan 15 14:07:59 2021
 import numpy as np
 
 #Create vector of compartmet volumes per RS for each species
-sp_RScomp_vol_m3=[]
+
 def volumesVector(Clist,compartments_prop):
+    sp_RScomp_vol_m3=[]
     for sp3 in Clist:
         rivS= sp3[2:-3]
         cmp3=sp3[-3]
