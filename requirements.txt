@@ -6,7 +6,6 @@ watermark==2.2.0
 celluloid==0.2.0
 cycler==0.10.0
 seaborn==0.10.0
-Python implementation==CPython
 Python version==3.7.6
 IPython version==7.12.0
 seaborn==0.10.0
