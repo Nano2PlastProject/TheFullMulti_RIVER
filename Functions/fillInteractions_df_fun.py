@@ -7,16 +7,27 @@ Created on Fri Jul  2 11:19:34 2021
 import numpy as np
 import pandas as pd
 
-def fillInteractions_fun (RC_df, Clist,compartments_prop):
+def fillInteractions_fun (RC_df, Clist,compartments_prop,river_flows):
     
-    def interact3(sp1,interactions_df,RC_df):
+    def interact3(sp1,interactions_df,RC_df,river_flows):
         
-        def transportProcess (sp1,sp2,RC_df):
-            if int(sp2[:-3])+1 == int(sp1[:-3]):#Consecutive river sections
-                if sp1[-3]!="4":
-                    solution = RC_df[sp2]["advection"]
-                else:
-                    solution = RC_df[sp2]["sedTransport"]
+        def transportProcess (sp1,sp2,RC_df,river_flows):
+            
+            #If different river sections:
+            ####Transport between river sections only if same compartment, species and size fraction
+            if sp2[-3:] == sp1[-3:]:#Only different box (but all rest same)
+                J=int(sp1[-4])+1
+                I=int(sp2[-4])+1
+                flowI_df=river_flows[river_flows.Region_I == I]
+                if J in flowI_df.Region_J.tolist():
+                    if sp1[-3]!="4":
+                        idx_ad= np.where(flowI_df.Region_J== J)[0][0]
+                        if idx_ad == 0:
+                            solution = RC_df[sp2]["advection"]
+                        else:
+                            solution = RC_df[sp2]["advection"][idx_ad]
+                    else:
+                        solution = RC_df[sp2]["sedTransport"] 
             else:
                 solution = 0
             return solution
@@ -72,7 +83,7 @@ def fillInteractions_fun (RC_df, Clist,compartments_prop):
               ####Transport between river sections is indicated by the Ocean flow matrix
     
                 elif sp2[-3:] == sp1[-3:]:#Only different sector (but all rest same)
-                    interact_row.append(transportProcess (sp1,sp2,RC_df))
+                    interact_row.append(transportProcess (sp1,sp2,RC_df,river_flows))
                 else:
                     interact_row.append(0)
             
@@ -114,7 +125,7 @@ def fillInteractions_fun (RC_df, Clist,compartments_prop):
 
     interactions_df_rows=[]
     for sp1 in interactions_df.index.to_list():
-        interactions_df_rows.append(interact3(sp1,interactions_df,RC_df))
+        interactions_df_rows.append(interact3(sp1,interactions_df,RC_df,river_flows))
     #interact3(sp1) for sp1 in interactions_df.index.to_list()]
     array=np.column_stack(interactions_df_rows)
     interactions_df_sol=pd.DataFrame(array,index=list_sp1, columns=list_sp1)

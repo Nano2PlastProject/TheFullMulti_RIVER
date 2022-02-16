@@ -16,7 +16,6 @@ from GlobalConstants import *
 
     
     
-    
 def degradation(t_half_d):
     
     #degradation estimations
@@ -211,7 +210,7 @@ def breakup(process_df, idx, MP_radius_m, SPM_radius_m, MP_density_kg_m3, SPM_de
     return k_aggBreakup
 
 
-def advection(comp_dict, compartment):
+def advection(comp_dict, compartment,riverSection):
      #advective transport
     
     # Based on Praetorius et al. 2012: Kflow = v_riv_flow*(Aw1/Vw1)
@@ -221,17 +220,22 @@ def advection(comp_dict, compartment):
     #water and 28 min in the surface watercompartment
     
     #RIVER SECTION DEPENDENT WITH VARYING DISCHARGE 
+    flow_df=river_flows[river_flows.Region_I == int(riverSection)+1]
+    discharge_m3_s=flow_df["q(m3/h)"]/60/60
+    
     
     if comp_dict[compartment].name == "flowingWater":
         #k_adv = comp_volume_m3/(29*24*60*60) #Kflow = v_riv_flow = 1.5 m3s-1
         #k_adv = comp_volume_m3/(35*60*60) #Kflow = v_riv_flow = 29.8 m3s-1
         #k_adv = discharge/ comp_dict[compartment].volumeBox_m3 #Kflow = v_riv_flow = 65.8 m3s-1
-        k_adv = comp_dict[compartment].v_riv_flow*(comp_dict[compartment].CrossArea_m2/comp_dict[compartment].volume_m3)
+        k_adv=  discharge_m3_s/ comp_dict[compartment].volume_m3
+        #k_adv = comp_dict[compartment].v_riv_flow*(comp_dict[compartment].CrossArea_m2/comp_dict[compartment].volume_m3)
     elif comp_dict[compartment].name == "surface":
         #k_adv = comp_volume_m3/(28*60)#Kflow = v_riv_flow = 1.5 m3s-1
         #k_adv = comp_volume_m3/(1.4*60)#Kflow = v_riv_flow = 29.8 m3s-1
         #k_adv = discharge/comp_dict[compartment].volumeBox_m3 #Kflow = v_riv_flow = 65.8 m3s-1
-        k_adv = comp_dict[compartment].v_riv_flow*(comp_dict[compartment].CrossArea_m2/comp_dict[compartment].volume_m3)
+        k_adv=  discharge_m3_s/ comp_dict[compartment].volume_m3
+        #k_adv = comp_dict[compartment].v_riv_flow*(comp_dict[compartment].CrossArea_m2/comp_dict[compartment].volume_m3)
     else:
         k_adv = 0
         

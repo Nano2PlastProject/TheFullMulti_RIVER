@@ -40,6 +40,7 @@ os.chdir(cwd+"/Inputs")
 process_df= readProcessparam ("process_paramRiver.txt")
 MP_prop = microplasticData("microplasticsSizeClass.txt")
 compartments_prop = readCompartmentData("compartmentsGenericRiverSec_prop.txt")
+river_flows=pd.read_csv("flow_connectivity.csv")
 #Add river section depth field
 RSdepth = []
 for row in range(len(compartments_prop)):
@@ -152,7 +153,7 @@ Half_life_df_h=RC_df_tidy.pivot_table(index=["Compartment", "MP_form", "SizeFrac
                     columns='Process', 
                     values='t1/2_h')
 
-interactions_df= fillInteractions_fun (RC_df, Clist,compartments_prop)
+interactions_df= fillInteractions_fun (RC_df, Clist,compartments_prop,river_flows)
 
 ### Heat maps of half-life times 
 T_hm_array= [Half_life_df_h.loc["Surface Water"],Half_life_df_h.loc["Flowing Water"],Half_life_df_h.loc["Stagnant Water"],Half_life_df_h.loc["Sediment"]]

@@ -58,7 +58,7 @@ def RC_estimation_function(processList,CombList,Clist,MP_prop,compartments_prop,
             RC_df.loc["breakup", spc[2:6]]= RC_GeneratorRiver.breakup(process_df, idx, MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3,compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment, aggState)
             RC_df.loc["settling", spc[2:6]]= RC_GeneratorRiver.settling(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, surface.depth_m, "Stokes", compartment)
             RC_df.loc["rising", spc[2:6]]= RC_GeneratorRiver.rising(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, flowingWater.depth_m, "Stokes", compartment)
-            RC_df.loc["advection", spc[2:6]]= RC_GeneratorRiver.advection(comp_dict, compartment)
+            RC_df.loc["advection", spc[2:6]]= RC_GeneratorRiver.advection(comp_dict, compartment, riverSection)
             RC_df.loc["mixing", spc[2:6]]= RC_GeneratorRiver.mixing(flowingWater,compartment, "up", comp_dict) #update creteria for mixing direction
             RC_df.loc["biofilm", spc[2:6]]= RC_GeneratorRiver.biofilm(compartment, process_df, comp_dict, idx, aggState)#add t biofilm growth?? Look at new processess MPLake-Antonia
             RC_df.loc["resusp", spc[2:6]]= RC_GeneratorRiver.resusp(compartment, comp_dict)

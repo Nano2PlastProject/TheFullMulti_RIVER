@@ -14,7 +14,7 @@ import pandas as pd
 
 
 
-def fillMatrixInteractionsALL(RC_df, Clist,compartments_prop):
+def fillMatrixInteractionsALL(RC_df, Clist,compartments_prop,river_flows):
     #Timer for Interactions matrix
 #    startTime = datetime.now()
     #Remove volume and density from RC_df
@@ -95,17 +95,23 @@ def fillMatrixInteractionsALL(RC_df, Clist,compartments_prop):
                    
               #If different river sections:
               ####Transport between river sections only if consecutive river sections
-               elif int(sp2[:-3])+1 == int(sp1[:-3]):#Consecutive river sections
-                       #And Transport only in same species, compartment and size bin
-                       if sp1[-3:] == sp2[-3:]:
-                           if sp1[-3]!="4":
+               elif sp2[-3:] == sp1[-3:]:
+                   #Only different sector (but all rest same)
+                   J=int(sp1[-4])+1
+                   I=int(sp2[-4])+1
+                   flowI_df=river_flows[river_flows.Region_I == I]
+                   if J in flowI_df.Region_J.tolist():
+                       if sp1[-3]!="4":
+                           idx_ad= np.where(flowI_df.Region_J== J)[0][0]
+                           if idx_ad == 0:
                                interactions_df[sp1][sp2] = RC_df[sp2]["advection"]
                            else:
-                               interactions_df[sp1][sp2] = RC_df[sp2]["sedTransport"]
+                               interactions_df[sp1][sp2] = RC_df[sp2]["advection"][idx_ad]
                        else:
-                           interactions_df[sp1][sp2] = 0 
-               else:
-                   interactions_df[sp1][sp2] = 0 
+                           interactions_df[sp1][sp2] = RC_df[sp2]["sedTransport"] 
+                   else:
+                        interactions_df[sp1][sp2] = 0
+                   
                
                       
 #    print(datetime.now() - startTime)           
