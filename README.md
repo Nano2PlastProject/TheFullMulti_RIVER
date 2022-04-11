@@ -5,6 +5,8 @@
 
 This repository contains one of the models developed in the ECO48-Nano2plast Project: [EXTENDING NANOPARTICLE MODELS TO OPEN SOURCE MODELS OF THE FATE AND TRANSPORT OF MICROPLASTIC IN AQUATIC SYSTEMS](https://bit.ly/35WxEPF).
 
+The model and its application to a generic river case study is described in the publication: [The Full Multi: An open-source framework for modelling the transport and fate of nano- and microplastics in aquatic systems](https://doi.org/10.1016/j.envsoft.2021.105291)
+
 The Full Multi Team: Proff. Matthew MacLeod (@MacLeodMatt), Dr. Antonia Praetorius (@apraetorius) and Dr. Maria del Prado Domercq (@PradoDomercq)
 
 The code contained in this repository is intended as a framework to study microplastics fate and transport along a generic river system.
