@@ -50,19 +50,19 @@ def RC_estimation_function(processList,CombList,Clist,MP_prop,compartments_prop,
             idx = np.where((process_df['aggState']==aggState) & (process_df['compartment']== int(compartment)))[0][0]
             
         
-            RC_df.loc["degradation", spc[2:6]]= RC_GeneratorRiver.degradation(process_df.t_half_d.loc[idx]) 
-            RC_df.loc["fragmentation", spc[2:6]]= RC_GeneratorRiver.fragmentation(process_df.t_frag_d.loc[idx], particles_dict[aggState].radius_m, particles_dict[aggState].volume_m3,particles_dict[aggState].diameter_um, sizeBinIdx)
-            RC_df.loc["heteroagg", spc[2:6]]= RC_GeneratorRiver.heteroagg(process_df.alpha.loc[idx], MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3, compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment)
-            RC_df.loc["breakup", spc[2:6]]= RC_GeneratorRiver.breakup(process_df, idx, MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3,compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment, aggState)
-            RC_df.loc["settling", spc[2:6]]= RC_GeneratorRiver.settling(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, surface.depth_m, "Stokes", compartment)
-            RC_df.loc["rising", spc[2:6]]= RC_GeneratorRiver.rising(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, flowingWater.depth_m, "Stokes", compartment)
-            RC_df.loc["advection", spc[2:6]]= RC_GeneratorRiver.advection(compartments_prop,comp_dict, compartment,riverSection,river_flows)
-            RC_df.loc["mixing", spc[2:6]]= RC_GeneratorRiver.mixing(flowingWater,compartment, "up", comp_dict) #update creteria for mixing direction
-            RC_df.loc["biofilm", spc[2:6]]= RC_GeneratorRiver.biofilm(compartment, process_df, comp_dict, idx, aggState)#add t biofilm growth?? Look at new processess MPLake-Antonia
-            RC_df.loc["resusp", spc[2:6]]= RC_GeneratorRiver.resusp(compartment, comp_dict)
-            RC_df.loc["burial", spc[2:6]]= RC_GeneratorRiver.burial(compartment, comp_dict)
-            RC_df.loc["sedTransport", spc[2:6]]= RC_GeneratorRiver.sedTransport(compartment,comp_dict)
-            RC_df.loc["defouling", spc[2:6]]= RC_GeneratorRiver.defouling(compartment, process_df, comp_dict, idx, aggState)
+            RC_df.loc["degradation", spc[2:6]]= RC_GeneratorRiverNew.degradation(process_df.t_half_d.loc[idx]) 
+            RC_df.loc["fragmentation", spc[2:6]]= RC_GeneratorRiverNew.fragmentation(process_df.t_frag_d.loc[idx], particles_dict[aggState].radius_m, particles_dict[aggState].volume_m3,particles_dict[aggState].diameter_um, sizeBinIdx)
+            RC_df.loc["heteroagg", spc[2:6]]= RC_GeneratorRiverNew.heteroagg(process_df.alpha.loc[idx], MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3, compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment)
+            RC_df.loc["breakup", spc[2:6]]= RC_GeneratorRiverNew.breakup(process_df, idx, MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3,compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment, aggState)
+            RC_df.loc["settling", spc[2:6]]= RC_GeneratorRiverNew.settling(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, surface.depth_m, "Stokes", compartment)
+            RC_df.loc["rising", spc[2:6]]= RC_GeneratorRiverNew.rising(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, flowingWater.depth_m, "Stokes", compartment)
+            RC_df.loc["advection", spc[2:6]]= RC_GeneratorRiverNew.advection(compartments_prop,comp_dict, compartment,riverSection,river_flows)
+            RC_df.loc["mixing", spc[2:6]]= RC_GeneratorRiverNew.mixing(flowingWater,compartment, "up", comp_dict) #update creteria for mixing direction
+            RC_df.loc["biofilm", spc[2:6]]= RC_GeneratorRiverNew.biofilm(compartment, process_df, comp_dict, idx, aggState)#add t biofilm growth?? Look at new processess MPLake-Antonia
+            RC_df.loc["resusp", spc[2:6]]= RC_GeneratorRiverNew.resusp(compartment, comp_dict)
+            RC_df.loc["burial", spc[2:6]]= RC_GeneratorRiverNew.burial(compartment, comp_dict)
+            RC_df.loc["sedTransport", spc[2:6]]= RC_GeneratorRiverNew.sedTransport(compartment,comp_dict)
+            RC_df.loc["defouling", spc[2:6]]= RC_GeneratorRiverNew.defouling(compartment, process_df, comp_dict, idx, aggState)
             RC_df.loc["volume_m3", spc[2:6]]= particles_dict[aggState].volume_m3
             RC_df.loc["density_kg_m3", spc[2:6]]= particles_dict[aggState].density_kg_m3
     
@@ -106,19 +106,19 @@ def RC_estimation_function(processList,CombList,Clist,MP_prop,compartments_prop,
             idx = np.where((process_df['aggState']==aggState) & (process_df['compartment']== int(compartment)))[0][0]
             
         
-            RC_df.loc["degradation", spc[2:]]= RC_GeneratorRiver.degradation(process_df.t_half_d.loc[idx]) 
-            RC_df.loc["fragmentation", spc[2:]]= RC_GeneratorRiver.fragmentation(process_df.t_frag_d.loc[idx], particles_dict[aggState].radius_m, particles_dict[aggState].volume_m3,particles_dict[aggState].diameter_um, sizeBinIdx)
-            RC_df.loc["heteroagg", spc[2:]]= RC_GeneratorRiver.heteroagg(process_df.alpha.loc[idx], MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3, compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment)
-            RC_df.loc["breakup", spc[2:]]= RC_GeneratorRiver.breakup(process_df, idx, MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3,compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment, aggState)
-            RC_df.loc["settling", spc[2:]]= RC_GeneratorRiver.settling(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, surface.depth_m, "Stokes", compartment)
-            RC_df.loc["rising", spc[2:]]= RC_GeneratorRiver.rising(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, flowingWater.depth_m, "Stokes", compartment)
-            RC_df.loc["advection", spc[2:]]= RC_GeneratorRiver.advection(compartments_prop,comp_dict, compartment,riverSection,river_flows)
-            RC_df.loc["mixing", spc[2:]]= RC_GeneratorRiver.mixing(flowingWater,compartment, "up", comp_dict) #update creteria for mixing direction
-            RC_df.loc["biofilm", spc[2:]]= RC_GeneratorRiver.biofilm(compartment, process_df, comp_dict, idx, aggState)#add t biofilm growth?? Look at new processess MPLake-Antonia
-            RC_df.loc["resusp", spc[2:]]= RC_GeneratorRiver.resusp(compartment, comp_dict)
-            RC_df.loc["burial", spc[2:]]= RC_GeneratorRiver.burial(compartment, comp_dict)
-            RC_df.loc["sedTransport", spc[2:]]= RC_GeneratorRiver.sedTransport(compartment,comp_dict)
-            RC_df.loc["defouling", spc[2:]]= RC_GeneratorRiver.defouling(compartment, process_df, comp_dict, idx, aggState)
+            RC_df.loc["degradation", spc[2:]]= RC_GeneratorRiverNew.degradation(process_df.t_half_d.loc[idx]) 
+            RC_df.loc["fragmentation", spc[2:]]= RC_GeneratorRiverNew.fragmentation(process_df.t_frag_d.loc[idx], particles_dict[aggState].radius_m, particles_dict[aggState].volume_m3,particles_dict[aggState].diameter_um, sizeBinIdx)
+            RC_df.loc["heteroagg", spc[2:]]= RC_GeneratorRiverNew.heteroagg(process_df.alpha.loc[idx], MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3, compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment)
+            RC_df.loc["breakup", spc[2:]]= RC_GeneratorRiverNew.breakup(process_df, idx, MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3,compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment, aggState)
+            RC_df.loc["settling", spc[2:]]= RC_GeneratorRiverNew.settling(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, surface.depth_m, "Stokes", compartment)
+            RC_df.loc["rising", spc[2:]]= RC_GeneratorRiverNew.rising(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, flowingWater.depth_m, "Stokes", compartment)
+            RC_df.loc["advection", spc[2:]]= RC_GeneratorRiverNew.advection(compartments_prop,comp_dict, compartment,riverSection,river_flows)
+            RC_df.loc["mixing", spc[2:]]= RC_GeneratorRiverNew.mixing(flowingWater,compartment, "up", comp_dict) #update creteria for mixing direction
+            RC_df.loc["biofilm", spc[2:]]= RC_GeneratorRiverNew.biofilm(compartment, process_df, comp_dict, idx, aggState)#add t biofilm growth?? Look at new processess MPLake-Antonia
+            RC_df.loc["resusp", spc[2:]]= RC_GeneratorRiverNew.resusp(compartment, comp_dict)
+            RC_df.loc["burial", spc[2:]]= RC_GeneratorRiverNew.burial(compartment, comp_dict)
+            RC_df.loc["sedTransport", spc[2:]]= RC_GeneratorRiverNew.sedTransport(compartment,comp_dict)
+            RC_df.loc["defouling", spc[2:]]= RC_GeneratorRiverNew.defouling(compartment, process_df, comp_dict, idx, aggState)
             RC_df.loc["volume_m3", spc[2:]]= particles_dict[aggState].volume_m3
             RC_df.loc["density_kg_m3", spc[2:]]= particles_dict[aggState].density_kg_m3
             
@@ -164,19 +164,19 @@ def RC_estimation_function(processList,CombList,Clist,MP_prop,compartments_prop,
             idx = np.where((process_df['aggState']==aggState) & (process_df['compartment']== int(compartment)))[0][0]
             
         
-            RC_df.loc["degradation", spc[2:]]= RC_GeneratorRiver.degradation(process_df.t_half_d.loc[idx]) 
-            RC_df.loc["fragmentation", spc[2:]]= RC_GeneratorRiver.fragmentation(process_df.t_frag_d.loc[idx], particles_dict[aggState].radius_m,  particles_dict[aggState].volume_m3,  particles_dict[aggState].diameter_um, sizeBinIdx)
-            RC_df.loc["heteroagg", spc[2:]]= RC_GeneratorRiver.heteroagg(process_df.alpha.loc[idx], MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3, compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment)
-            RC_df.loc["breakup", spc[2:]]= RC_GeneratorRiver.breakup(process_df, idx, MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3,compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment, aggState)
-            RC_df.loc["settling", spc[2:]]= RC_GeneratorRiver.settling(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, surface.depth_m, "Stokes", compartment)
-            RC_df.loc["rising", spc[2:]]= RC_GeneratorRiver.rising(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, flowingWater.depth_m, "Stokes", compartment)
-            RC_df.loc["advection", spc[2:]]=  advection(compartments_prop,comp_dict, compartment,riverSection,river_flows)
-            RC_df.loc["mixing", spc[2:]]= RC_GeneratorRiver.mixing(flowingWater,compartment, "up", comp_dict) #update creteria for mixing direction
-            RC_df.loc["biofilm", spc[2:]]= RC_GeneratorRiver.biofilm(compartment, process_df, comp_dict, idx, aggState)#add t biofilm growth?? Look at new processess MPLake-Antonia
-            RC_df.loc["resusp", spc[2:]]= RC_GeneratorRiver.resusp(compartment, comp_dict)
-            RC_df.loc["burial", spc[2:]]= RC_GeneratorRiver.burial(compartment, comp_dict)
-            RC_df.loc["sedTransport", spc[2:]]= RC_GeneratorRiver.sedTransport(compartment,comp_dict)
-            RC_df.loc["defouling", spc[2:]]= RC_GeneratorRiver.defouling(compartment, process_df, comp_dict, idx, aggState)
+            RC_df.loc["degradation", spc[2:]]= RC_GeneratorRiverNew.degradation(process_df.t_half_d.loc[idx]) 
+            RC_df.loc["fragmentation", spc[2:]]= RC_GeneratorRiverNew.fragmentation(process_df.t_frag_d.loc[idx], particles_dict[aggState].radius_m,  particles_dict[aggState].volume_m3,  particles_dict[aggState].diameter_um, sizeBinIdx)
+            RC_df.loc["heteroagg", spc[2:]]= RC_GeneratorRiverNew.heteroagg(process_df.alpha.loc[idx], MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3, compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment)
+            RC_df.loc["breakup", spc[2:]]= RC_GeneratorRiverNew.breakup(process_df, idx, MP1.radius_m, SPM1.radius_m, MP1.density_kg_m3, SPM1.density_kg_m3, SPM1.concNum_part_m3,compartments_prop.G.loc[comp_index], compartments_prop.T_K.loc[comp_index], compartment, aggState)
+            RC_df.loc["settling", spc[2:]]= RC_GeneratorRiverNew.settling(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, surface.depth_m, "Stokes", compartment)
+            RC_df.loc["rising", spc[2:]]= RC_GeneratorRiverNew.rising(particles_dict[aggState].density_kg_m3, particles_dict[aggState].radius_m, flowingWater.depth_m, "Stokes", compartment)
+            RC_df.loc["advection", spc[2:]]= RC_GeneratorRiverNew.advection(compartments_prop,comp_dict, compartment,riverSection,river_flows)
+            RC_df.loc["mixing", spc[2:]]= RC_GeneratorRiverNew.mixing(flowingWater,compartment, "up", comp_dict) #update creteria for mixing direction
+            RC_df.loc["biofilm", spc[2:]]= RC_GeneratorRiverNew.biofilm(compartment, process_df, comp_dict, idx, aggState)#add t biofilm growth?? Look at new processess MPLake-Antonia
+            RC_df.loc["resusp", spc[2:]]= RC_GeneratorRiverNew.resusp(compartment, comp_dict)
+            RC_df.loc["burial", spc[2:]]= RC_GeneratorRiverNew.burial(compartment, comp_dict)
+            RC_df.loc["sedTransport", spc[2:]]= RC_GeneratorRiverNew.sedTransport(compartment,comp_dict)
+            RC_df.loc["defouling", spc[2:]]= RC_GeneratorRiverNew.defouling(compartment, process_df, comp_dict, idx, aggState)
             RC_df.loc["volume_m3", spc[2:]]= particles_dict[aggState].volume_m3
             RC_df.loc["density_kg_m3", spc[2:]]= particles_dict[aggState].density_kg_m3
     else:
