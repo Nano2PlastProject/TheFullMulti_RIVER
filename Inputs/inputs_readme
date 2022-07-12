@@ -1,0 +1,21 @@
+Folder with input files as described:
+
+Input file name	Information type	Parameters
+MiroplasticsSizeClass.txt:	Microplastics characteristics	
+- Composition
+- Density
+- Shape
+- Diameter
+- Length a, b and c (for non- spherical particles)
+compartmentsGenericRiverSec_prop.txt:	Cell dimensions and properties	
+- Depth, length and width (m)
+- Volume (m3)
+- Shear rate (G) 
+- Temperature (K)
+- Flow velocity (m/s)
+- Concentration of SPM (mg/L)
+process_paramRiver.txt:	Fate process parameters	
+- Attachment efficiency (αhet-agg)
+- Degradation half-life times (t_half)
+- Fractionation rates (k_(frag_gen))
+- Time of biofilm growth (t_(biof-growth))
