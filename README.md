@@ -61,3 +61,10 @@ Contact:
 
 fullMultiModel@aces.su.se
 
+
+### Updates
+===========
+
+The current version reflects the results presented in the publication: [The Full Multi: An open-source framework for modelling the transport and fate of nano- and microplastics in aquatic systems](https://doi.org/10.1016/j.envsoft.2021.105291).
+
+The latest version of The Full Multi River with several fixed bugs can be found in [TheFullMulti_River_v2.0](https://github.com/Nano2PlastProject/TheFullMulti_River_v2.0)
